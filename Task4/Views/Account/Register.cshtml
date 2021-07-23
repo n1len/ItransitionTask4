@@ -1,0 +1,58 @@
+﻿@model Task4.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="container col-sm-8">
+    <div class="col-md-10 offset-md-1">
+        <section>
+            <form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
+                <h4 class="text-center">Окно регистрации нового пользователя</h4>
+                <hr />
+                <div class="validation" asp-validation-summary="ModelOnly"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Name">Введите имя</label><br/>
+                            <input type="text" asp-for="Name" class="form-control"/>
+                            <span asp-validation-for="Name" class="text-danger"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Email">Введите Email</label><br/>
+                            <input type="text" asp-for="Email" class="form-control"/>
+                            <span asp-validation-for="Email" class="text-danger"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Password">Введите пароль</label><br/>
+                            <input asp-for="Password" class="form-control"/>
+                            <span asp-validation-for="Password" class="text-danger"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword">Подтвердите пароль</label><br/>
+                            <input asp-for="ConfirmPassword" class="form-control"/>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a asp-action="Login">Уже зарегистрированы? Авторизоваться.</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+

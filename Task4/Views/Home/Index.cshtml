@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Task4.Models.User>
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<form asp-controller="Home">
+    <div class="text-left">
+        <button type="submit" class="btn btn-outline-dark" formmethod="post"
+                asp-action="Block">
+            Block
+        </button>
+        <button type="submit" class="btn btn-outline-dark" formmethod="post"
+                asp-action="Unblock">
+            <i class="fas fa-unlock-alt"></i>
+        </button>
+        <button type="submit" class="btn btn-outline-dark" formmethod="post"
+                asp-action="Delete">
+            <i class="fas fa-user-minus"></i>
+        </button>
+    </div>
+    
+    <div class="text-center mt-2 table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col" class="text-left">
+                    <input type="checkbox" id="tableCheckBox" />
+                    Выделить всё / Снять выделение
+                </th>
+                <th scope="col">
+                    Id
+                </th>
+                <th scope="col">
+                    Имя
+                </th>
+                <th scope="col">
+                    Email
+                </th>
+                <th scope="col">
+                    Дата регистрации
+                </th>
+                <th scope="col">
+                    Дата последнего логина
+                </th>
+                <th scope="col">
+                    Статус
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-left">
+                        <input type="checkbox" value="@item.Id" name="itemsId" class="custom-checkbox" />
+                    </td>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.RegisterDate
+                    </td>
+                    <td>
+                        @item.LastLoginDate
+                    </td>
+                    <td>
+                        @if (!item.IsBlocked)
+                        {
+                            <p>Не заблокирован</p>
+                        }
+                        else
+                        {
+                            <p>Заблокирован</p>
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    document.getElementById("tableCheckBox").onclick = function checkAll(event) {
+        const elements = document.getElementsByClassName("custom-checkbox");
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].checked = event.target.checked;
+        }
+    };
+</script>
